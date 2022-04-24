@@ -8,40 +8,112 @@
     <title>Stage</title>
 </head>
 <body>
-    <header>
+    <header class="desktop">
         <nav>
             <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="">Pret immobilier</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Menu</a></li>
-                <li><a href="">Contact Us</a></li>
+                <li> <a href="index.html"><span class='orange'>Accueil</span></a></li>
+                <li> <a href="about.html"> <span class="yellow"> Prêt immobilier</span></a></li>
+                <li> <a  href="experience.html"> A propos</a></li>
+                <li> <a href="experience.html">Menu</a></li>
             </ul>
+            <div class="logo">
+                
+            </div>
+            <div class="btncontact">
+                <a class='centrer' href="contact.html"> <span>Nous contactez</span></a>
+            </div>
         </nav>
     </header>
-    <section>
-        <h1>Calculez votre pret immobilier </h1>
-        <h2>Calculez le montant des mensualités de votre prêt immobilier correspondant à l'emprunt que vous souhaitez effectuer.</h2>
-        <button>Commencez maintenant</button>
+    <header class="mobile">
+        <div class="container">
+            <nav class="navbar">
+                <div class="hamburger-menu">
+                    <div class= "line line-1"></div>
+                    <div class= "line line-2"></div>
+                    <div class= "line line-3"></div>
+                </div>
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link">Accueil</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a href="about.html" class="nav-link">About</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a href="experience.html" class="nav-link">Expérience</a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="btncontact">
+                                <a class="nav-link" href="contact.html"> <span> Me contactez</span></a>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                    <div class="bebe">
+                        <li class=>
+                            <a href="https://www.instagram.com/steven.oxyzal/" class="nav-link">Instagram</a>
+                        </li>
+                        <li >
+                            <a href="https://www.linkedin.com/in/steven-madi-3a1a9920a/" class="nav-link">Linkedin</a>
+                        </li>
+                        <li >
+                            <a href="https://github.com/Oxyzal/" class="nav-link">Github</a>
+                        </li>
+                </div>
+            </nav>
+        </div>
+    </header> 
+    <section class="first">
+        <div class="titre">
+            <h1>Calculez votre pret immobilier </h1>
+            <h2>Calculez le montant des mensualités de votre prêt immobilier correspondant à l'emprunt que vous souhaitez effectuer.</h2>
+            <button class="yellow">Commencez maintenant</button>
+        </div>
     </section>
-    <section>
-        <div>
+    <section class="pretimmo">
+        <div class="flex center">
             <div class="trait"></div>
             <h3>Calculez votre pret immobilier </h3>
             <div class="trait"></div>
         </div>
-        <div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="trait"></div>
-        <div class="result">
-            <h3>Résultat de votre simulation</h3>
-            <div class="simulation"></div>
-        </div>
-        <div class="recap">
-            <h3>Récapitulatif</h3>
+        <div class="flex gap padding">
+            <form id='cheatcode' class="test2 flex col" action="#" method="POST">
+                    <div class="flex col padding">
+                        <label for="montant">Capital emprunté en euros : <span id="montant_actuel">{{capital}}</span></label>
+                        
+                        <input type="range" id="montant" name="montant" min="5000" max="600000" step="1000" value="{{capital}}">
+                    </div>
+                    <div class="flex col padding">
+                        <label for="temps">Durée de votre prêt (en années) : <span id="temps_d">{{temps}}</span> </label>
+                        <input type="range" id="temps" name="temps" min="1" max="30" step="1" value="{{temps}}">
+                    </div>
+                    <div class="flex itemcenter padding">
+                        <label for="interet">Taux d'intérêt avant négociation</label>
+                        <input class="taux" type="" name="interet" value="{{interet}}">
+                        <span class="pourcentage">%</span>
+                    </div>
+                    <div class="flex itemcenter padding">
+                        <label for="assurance">Taux d'assurance</label>
+                        <input class="taux" type="" name="assurance" value="{{assurance}}">
+                        <span class="pourcentage">%</span>
+                    </div>
+                <button class="envoie" type="submit">Voir ses résultat</button>
+            </form>
+            {% if tableau and test %}
+            <div class="test flex col">
+                <span class="men ">Votre mensualités sera de : </span>
+                <p class="tcenter wei mt2"> <span class="yellow big weil">{{test}}</span> €/mois </p>
+                <p class="tcenter mt">Le montant total des intérêts versés sera de   <span class="yellow"> {{tableau}} </span> euros</p>
+            </div>
+            {% else %}
+            <div class="test flex col">
+                <span class="men ">Votre mensualités sera de : </span>
+                <p class="tcenter wei mt2"> <span class="yellow big weil">0</span> €/mois </p>
+                <p class="tcenter mt">Le montant total des intérêts versés sera de   <span class="yellow"> 0 </span> euros</p>
+            </div>
+            {% endif %}
         </div>
     </section>
+    <script src="{{url_for('static', filename='slideburger.js')}}"></script>
 </body>
 </html>
